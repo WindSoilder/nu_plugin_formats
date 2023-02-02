@@ -11,3 +11,8 @@ nu-protocol = { version = "0.75" }
 nu-engine = { version = "0.75" }
 eml-parser = "0.1.0"
 indexmap = "1.7"
+
+[dev-dependencies]
+nu-test-support = { version = "0.75" }
+tempfile = "3.2.0"
+nu-path = { version = "0.75" }
