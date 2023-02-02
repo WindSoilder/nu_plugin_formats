@@ -326,6 +326,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7fcaabb2fef8c910e7f4c7ce9f67a1283a1715879a7c230ca9d6d1ae31f16d91"
 
 [[package]]
+name = "eml-parser"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "43e6fc6e74658e477675b59e61e10e9722cb2b845b0e2834df60f979c865e821"
+dependencies = [
+ "regex",
+]
+
+[[package]]
 name = "erased-serde"
 version = "0.3.24"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -701,6 +710,8 @@ dependencies = [
 name = "nu_plugin_formats"
 version = "0.1.0"
 dependencies = [
+ "eml-parser",
+ "indexmap",
  "nu-engine",
  "nu-plugin",
  "nu-protocol",
