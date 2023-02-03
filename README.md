@@ -51,3 +51,6 @@ Converts ini formatted string to record
 a=1
 b=2' | from ini
 ```
+
+# Note
+Currently to run tests successfully, you need to put a binary `nu` file into `target/debug/`.  It's no-longer required if https://github.com/nushell/nushell/pull/7942 is ok to merge.
