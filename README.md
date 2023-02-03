@@ -18,7 +18,7 @@ To: someone@somewhere.com
 Test' | from eml
 ```
 
-2. Convert eml structured data into record
+2. Convert eml structured data into record with restricted body to view
 ```
 > 'From: test@email.com
 Subject: Welcome
