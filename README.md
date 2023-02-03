@@ -6,3 +6,48 @@ A nushell plugin to convert data to nushell tables.
 2. from ics - original ported from nushell core.
 3. from ini - original ported from nushell core.
 4. from vcf - original ported from nushell core.
+
+# Examples
+## from eml
+1. Convert eml structured data into record
+```
+> 'From: test@email.com
+Subject: Welcome
+To: someone@somewhere.com
+
+Test' | from eml
+```
+
+2. Convert eml structured data into record
+```
+> 'From: test@email.com
+Subject: Welcome
+To: someone@somewhere.com
+
+Test' | from eml -b 1
+```
+
+## from ics
+Converts ics formatted string to table
+```
+> 'BEGIN:VCALENDAR
+END:VCALENDAR' | from ics
+```
+
+## from vcf
+Converts ics formatted string to table
+```
+> 'BEGIN:VCARD
+N:Foo
+FN:Bar
+EMAIL:foo@bar.com
+END:VCARD' | from vcf
+```
+
+## from ini
+Converts ini formatted string to record
+```
+> '[foo]
+a=1
+b=2' | from ini
+```
