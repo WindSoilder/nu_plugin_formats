@@ -1,6 +1,6 @@
 mod from;
 
-use from::{eml, ics};
+use from::{eml, ics, vcf};
 use nu_plugin::{EvaluatedCall, LabeledError, Plugin};
 use nu_protocol::{Category, Signature, SyntaxShape, Type, Value};
 
@@ -21,6 +21,9 @@ impl Plugin for FromCmds {
             Signature::build(ics::CMD_NAME)
                 .input_output_types(vec![(Type::String, Type::Table(vec![]))])
                 .category(Category::Formats),
+            Signature::build(vcf::CMD_NAME)
+                .input_output_types(vec![(Type::String, Type::Table(vec![]))])
+                .category(Category::Formats),
         ]
     }
 
@@ -33,6 +36,7 @@ impl Plugin for FromCmds {
         match name {
             eml::CMD_NAME => eml::from_eml_call(call, input),
             ics::CMD_NAME => ics::from_ics_call(call, input),
+            vcf::CMD_NAME => vcf::from_vcf_call(call, input),
             _ => Err(LabeledError {
                 label: "Plugin call with wrong name signature".into(),
                 msg: "the signature used to call the plugin does not match any name in the plugin signature vector".into(),
