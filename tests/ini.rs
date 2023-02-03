@@ -1,6 +1,4 @@
-use nu_test_support::fs::Stub::FileWithContentToBeTrimmed;
 use nu_test_support::nu_with_plugins;
-use nu_test_support::playground::Playground;
 
 const TEST_CWD: &str = "tests/fixtures/";
 
