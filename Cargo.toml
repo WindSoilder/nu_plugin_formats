@@ -6,9 +6,9 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-nu-plugin = "0.75"
-nu-protocol = "0.75"
-nu-engine = "0.75"
+nu-plugin = { version = "0.75", path = "/Users/chenhongze/projects/rust_online_code/nushell/crates/nu-plugin" }
+nu-protocol = { version = "0.75", path = "/Users/chenhongze/projects/rust_online_code/nushell/crates/nu-protocol" }
+nu-engine = { version = "0.75", path = "/Users/chenhongze/projects/rust_online_code/nushell/crates/nu-engine" }
 indexmap = { version = "1.7", features = ["serde-1"] }
 
 eml-parser = "0.1.0"
@@ -16,6 +16,6 @@ ical = "0.7.0"
 serde_ini = "0.2.0"
 
 [dev-dependencies]
-nu-test-support = "0.75"
+nu-test-support = { version = "0.75", path = "/Users/chenhongze/projects/rust_online_code/nushell/crates/nu-test-support" }
 tempfile = "3.2.0"
 nu-path = "0.75"
