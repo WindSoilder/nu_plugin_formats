@@ -2,7 +2,7 @@ use ical::parser::ical::component::*;
 use ical::property::Property;
 use indexmap::map::IndexMap;
 use nu_plugin::{EvaluatedCall, LabeledError};
-use nu_protocol::{PluginExample, ShellError, Span, Spanned, Value};
+use nu_protocol::{ShellError, Span, Spanned, Value};
 use std::io::BufReader;
 
 pub const CMD_NAME: &str = "from ics";
@@ -42,61 +42,6 @@ pub fn from_ics_call(call: &EvaluatedCall, input: &Value) -> Result<Value, Label
         span: head,
     })
 }
-
-pub fn examples() -> Vec<PluginExample> {
-    vec![PluginExample {
-        example: "'BEGIN:VCALENDAR
-            END:VCALENDAR' | from ics"
-            .into(),
-        description: "Converts ics formatted string to table".into(),
-        result: Some(Value::List {
-            vals: vec![Value::Record {
-                cols: vec![
-                    "properties".to_string(),
-                    "events".to_string(),
-                    "alarms".to_string(),
-                    "to-Dos".to_string(),
-                    "journals".to_string(),
-                    "free-busys".to_string(),
-                    "timezones".to_string(),
-                ],
-                vals: vec![
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                    Value::List {
-                        vals: vec![],
-                        span: Span::test_data(),
-                    },
-                ],
-                span: Span::test_data(),
-            }],
-            span: Span::test_data(),
-        }),
-    }]
-}
-
 fn calendar_to_value(calendar: IcalCalendar, span: Span) -> Value {
     let mut row = IndexMap::new();
 

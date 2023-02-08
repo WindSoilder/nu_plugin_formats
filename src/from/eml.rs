@@ -2,10 +2,10 @@ use eml_parser::eml::*;
 use eml_parser::EmlParser;
 use indexmap::map::IndexMap;
 use nu_plugin::{EvaluatedCall, LabeledError};
-use nu_protocol::{PluginExample, ShellError, Span, Spanned, Value};
+use nu_protocol::{ShellError, Span, Spanned, Value};
 
 const DEFAULT_BODY_PREVIEW: usize = 50;
-pub const CMD_NAME: &str = "from eml22";
+pub const CMD_NAME: &str = "from eml";
 
 pub fn from_eml_call(call: &EvaluatedCall, input: &Value) -> Result<Value, LabeledError> {
     let preview_body: usize = call
@@ -13,85 +13,6 @@ pub fn from_eml_call(call: &EvaluatedCall, input: &Value) -> Result<Value, Label
         .map(|l| if l < 0 { 0 } else { l as usize })
         .unwrap_or(DEFAULT_BODY_PREVIEW);
     from_eml(input, preview_body, call.head)
-}
-
-pub fn examples() -> Vec<PluginExample> {
-    vec![
-        PluginExample {
-            description: "Convert eml structured data into record".into(),
-            example: "'From: test@email.com
-Subject: Welcome
-To: someone@somewhere.com
-Test' | from eml"
-                .into(),
-            result: Some(Value::Record {
-                cols: vec![
-                    "Subject".to_string(),
-                    "From".to_string(),
-                    "To".to_string(),
-                    "Body".to_string(),
-                ],
-                vals: vec![
-                    Value::test_string("Welcome"),
-                    Value::Record {
-                        cols: vec!["Name".to_string(), "Address".to_string()],
-                        vals: vec![
-                            Value::nothing(Span::test_data()),
-                            Value::test_string("test@email.com"),
-                        ],
-                        span: Span::test_data(),
-                    },
-                    Value::Record {
-                        cols: vec!["Name".to_string(), "Address".to_string()],
-                        vals: vec![
-                            Value::nothing(Span::test_data()),
-                            Value::test_string("someone@somewhere.com"),
-                        ],
-                        span: Span::test_data(),
-                    },
-                    Value::test_string("Test"),
-                ],
-                span: Span::test_data(),
-            }),
-        },
-        PluginExample {
-            description: "Convert eml structured data into record".into(),
-            example: "'From: test@email.com
-Subject: Welcome
-To: someone@somewhere.com
-Test' | from eml -b 1"
-                .into(),
-            result: Some(Value::Record {
-                cols: vec![
-                    "Subject".to_string(),
-                    "From".to_string(),
-                    "To".to_string(),
-                    "Body".to_string(),
-                ],
-                vals: vec![
-                    Value::test_string("Welcome"),
-                    Value::Record {
-                        cols: vec!["Name".to_string(), "Address".to_string()],
-                        vals: vec![
-                            Value::nothing(Span::test_data()),
-                            Value::test_string("test@email.com"),
-                        ],
-                        span: Span::test_data(),
-                    },
-                    Value::Record {
-                        cols: vec!["Name".to_string(), "Address".to_string()],
-                        vals: vec![
-                            Value::nothing(Span::test_data()),
-                            Value::test_string("someone@somewhere.com"),
-                        ],
-                        span: Span::test_data(),
-                    },
-                    Value::test_string("T"),
-                ],
-                span: Span::test_data(),
-            }),
-        },
-    ]
 }
 
 fn emailaddress_to_value(span: Span, email_address: &EmailAddress) -> Value {

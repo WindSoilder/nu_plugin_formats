@@ -2,7 +2,7 @@ use ical::parser::vcard::component::*;
 use ical::property::Property;
 use indexmap::map::IndexMap;
 use nu_plugin::{EvaluatedCall, LabeledError};
-use nu_protocol::{PluginExample, ShellError, Span, Spanned, Value};
+use nu_protocol::{ShellError, Span, Spanned, Value};
 
 pub const CMD_NAME: &str = "from vcf";
 
@@ -38,75 +38,6 @@ pub fn from_vcf_call(call: &EvaluatedCall, input: &Value) -> Result<Value, Label
         vals: collected,
         span: head,
     })
-}
-
-pub fn examples() -> Vec<PluginExample> {
-    vec![PluginExample {
-        example: "'BEGIN:VCARD
-N:Foo
-FN:Bar
-EMAIL:foo@bar.com
-END:VCARD' | from vcf"
-            .into(),
-        description: "Converts ics formatted string to table".into(),
-        result: Some(Value::List {
-            vals: vec![Value::Record {
-                cols: vec!["properties".to_string()],
-                vals: vec![Value::List {
-                    vals: vec![
-                        Value::Record {
-                            cols: vec![
-                                "name".to_string(),
-                                "value".to_string(),
-                                "params".to_string(),
-                            ],
-                            vals: vec![
-                                Value::test_string("N"),
-                                Value::test_string("Foo"),
-                                Value::Nothing {
-                                    span: Span::test_data(),
-                                },
-                            ],
-                            span: Span::test_data(),
-                        },
-                        Value::Record {
-                            cols: vec![
-                                "name".to_string(),
-                                "value".to_string(),
-                                "params".to_string(),
-                            ],
-                            vals: vec![
-                                Value::test_string("FN"),
-                                Value::test_string("Bar"),
-                                Value::Nothing {
-                                    span: Span::test_data(),
-                                },
-                            ],
-                            span: Span::test_data(),
-                        },
-                        Value::Record {
-                            cols: vec![
-                                "name".to_string(),
-                                "value".to_string(),
-                                "params".to_string(),
-                            ],
-                            vals: vec![
-                                Value::test_string("EMAIL"),
-                                Value::test_string("foo@bar.com"),
-                                Value::Nothing {
-                                    span: Span::test_data(),
-                                },
-                            ],
-                            span: Span::test_data(),
-                        },
-                    ],
-                    span: Span::test_data(),
-                }],
-                span: Span::test_data(),
-            }],
-            span: Span::test_data(),
-        }),
-    }]
 }
 
 fn contact_to_value(contact: VcardContact, span: Span) -> Value {

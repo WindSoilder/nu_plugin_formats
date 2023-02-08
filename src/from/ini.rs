@@ -1,6 +1,6 @@
 use indexmap::map::IndexMap;
 use nu_plugin::{EvaluatedCall, LabeledError};
-use nu_protocol::{PluginExample, ShellError, Span, Value};
+use nu_protocol::{ShellError, Value};
 
 pub const CMD_NAME: &str = "from ini";
 
@@ -35,23 +35,4 @@ pub fn from_ini_call(call: &EvaluatedCall, input: &Value) -> Result<Value, Label
         )
         .into()),
     }
-}
-
-pub fn examples() -> Vec<PluginExample> {
-    vec![PluginExample {
-        example: "'[foo]
-a=1
-b=2' | from ini"
-            .into(),
-        description: "Converts ini formatted string to record".into(),
-        result: Some(Value::Record {
-            cols: vec!["foo".to_string()],
-            vals: vec![Value::Record {
-                cols: vec!["a".to_string(), "b".to_string()],
-                vals: vec![Value::test_string("1"), Value::test_string("2")],
-                span: Span::test_data(),
-            }],
-            span: Span::test_data(),
-        }),
-    }]
 }
