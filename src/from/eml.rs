@@ -5,7 +5,7 @@ use nu_plugin::{EvaluatedCall, LabeledError};
 use nu_protocol::{PluginExample, ShellError, Span, Spanned, Value};
 
 const DEFAULT_BODY_PREVIEW: usize = 50;
-pub const CMD_NAME: &str = "from eml22";
+pub const CMD_NAME: &str = "from eml";
 
 pub fn from_eml_call(call: &EvaluatedCall, input: &Value) -> Result<Value, LabeledError> {
     let preview_body: usize = call
