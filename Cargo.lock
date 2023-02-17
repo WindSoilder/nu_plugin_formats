@@ -320,6 +320,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "edn-rs"
+version = "0.17.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1d2e6082a0fb551533530ad464d65c0477735b15cd2e049e2c833e28d4df1a0c"
+
+[[package]]
 name = "either"
 version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -800,6 +806,7 @@ dependencies = [
 name = "nu_plugin_formats"
 version = "0.1.0"
 dependencies = [
+ "edn-rs",
  "eml-parser",
  "ical",
  "indexmap",
