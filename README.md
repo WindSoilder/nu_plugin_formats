@@ -6,6 +6,7 @@ A nushell plugin to convert data to nushell tables.
 2. from ics - original ported from nushell core.
 3. from ini - original ported from nushell core.
 4. from vcf - original ported from nushell core.
+5. from edn - read from edn format string to nushell table.
 
 # Prerequisite
 `nushell`, It's a nushell plugin, so you need it.
