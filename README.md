@@ -1,3 +1,6 @@
+# Deprecated
+It's recommended to use [nu_plugin_formats](https://github.com/nushell/nushell/tree/main/crates/nu_plugin_formats) from nushell org directly, because it's well maintained.
+
 # nu_plugin_formats
 A nushell plugin to convert data to nushell tables.
 
